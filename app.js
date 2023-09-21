@@ -5,8 +5,8 @@ import morgan from "morgan";
 const app = express();
 app.use(morgan("combined"));
 
-app.listen(port, () => {
-  console.log(`App started; listening on port ${port}`);
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 export default app;
