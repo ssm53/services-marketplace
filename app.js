@@ -3,7 +3,7 @@ import prisma from "./src/utils/prisma.js";
 import cors from "cors";
 import morgan from "morgan";
 import sellersRouter from "./src/controllers/sellers.controllers.js";
-import usersRouter from ",/src/controllers/users.controllers.js"
+import usersRouter from "./src/controllers/users.controllers.js"
 
 const app = express();
 app.use(morgan("combined"));

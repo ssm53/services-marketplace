@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
           }); // friendly error handling
      }) 
     })
-      throw err;
+    
     
 
 
