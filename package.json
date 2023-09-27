@@ -1,27 +1,33 @@
 {
   "name": "services-backend",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx dotenv -e .env.development node server.js",
-    "start:dev": "npx dotenv -e .env.development nodemon server.js"
+    "start:dev": "npx dotenv -e .env.development nodemon server.js",
+    "migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev",
+    "migrate": "npx dotenv -e .env.development prisma migrate dev && npx dotenv -e .env.development prisma generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.3.1",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "prisma": "^5.3.1"
+    "pg": "^8.11.3",
+    "sequelize": "^6.33.0"
   },
   "devDependencies": {
-    "dotenv-cli": "^7.3.0"
-  }
+    "dotenv-cli": "^7.3.0",
+    "prisma": "^5.3.1"
+  },
+  "description": ""
 }
