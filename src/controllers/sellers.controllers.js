@@ -9,7 +9,6 @@ const router = express.Router()
 
 router.post('/', async (req, res) => {
   const data = req.body
-    console.log(data)  
 
   data.password = bcrypt.hashSync(data.password, 8);
 
@@ -23,11 +22,8 @@ router.post('/', async (req, res) => {
       const formattedError = {}
         return res.status(500).send({
             error: formattedError,
-            
           }); // friendly error handling
-         
      }) 
-     
     })
      
     
