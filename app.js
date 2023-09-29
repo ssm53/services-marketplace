@@ -16,8 +16,24 @@ app.use("/auth-user", authUsersRouter)
 app.use("/sellers", sellersRouter);
 app.use("/users", usersRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/getSeller/:slug", async (req, res) => {
+  const sellerSlug = parseInt(req.params.slug);
+  // using prisma, need to get seller details & seller details of specific seller. SellerId = seller slug
+  try {
+    const thatSeller = await prisma.seller.findUnique({
+      where: {
+        id: sellerSlug,
+      },
+    });
+
+    // Return the mydetails as JSON response
+    return res.json({ thatSeller }); // added user: for redirect.. place change to userid if needed
+    
+  } catch (error) {
+    // Handle errors and return an error response if needed
+    console.error("Error retrieving details:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 //need to implement auth later on
 app.get("/my-details/:sellerId", async (req, res) => {
