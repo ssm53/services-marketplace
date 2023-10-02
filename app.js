@@ -16,6 +16,8 @@ app.use("/auth-user", authUsersRouter)
 app.use("/sellers", sellersRouter);
 app.use("/users", usersRouter);
 
+//app.use("")
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -41,6 +43,32 @@ app.get("/my-details/:sellerId", async (req, res) => {
 });
 
 export default app;
+
+app.patch('/update-details/:sellerId', async (req, res) => {
+  const sellerId = parseInt(req.params.sellerId);
+  const data = req.body;
+
+  try {
+    const updatedSeller = await prisma.seller.update({
+      where: { id: sellerId },
+      //data: updatedDetails,  might be can try later
+      data: {
+        name: data.name,
+        email: data.email,
+        rate: data.rate,
+        language: data.language,
+        experience: data.experience,
+        pitch: data.pitch,
+      },
+    });
+
+    return res.status(200).json({ message: 'Seller details updated successfully', updatedSeller });
+  } catch (error) {
+    console.error('Error updating seller details:', error);
+    res.status(500).json({ error: 'Could not update seller details' });
+  }
+});
+
 
 // things to note
 // to start docker, we need to do this
