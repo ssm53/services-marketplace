@@ -29,5 +29,13 @@
     "dotenv-cli": "^7.3.0",
     "prisma": "^5.3.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssm53/services-marketplace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ssm53/services-marketplace/issues"
+  },
+  "homepage": "https://github.com/ssm53/services-marketplace#readme",
   "description": ""
 }
