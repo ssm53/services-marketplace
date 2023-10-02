@@ -23,7 +23,8 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
-    "sequelize": "^6.33.0"
+    "sequelize": "^6.33.0",
+    "stripe": "^13.8.0"
   },
   "devDependencies": {
     "dotenv-cli": "^7.3.0",
