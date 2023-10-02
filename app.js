@@ -4,8 +4,9 @@ import cors from "cors";
 import morgan from "morgan";
 import authSellersRouter from "./src/controllers/auth.Seller.controllers.js"
 import authUsersRouter from "./src/controllers/auth.User.controllers.js"
-import sellersRouter from "./src/controllers/sellers.controllers.js";
+import sellersRouter from "./src/controllers/sellers.controllers.js"
 import usersRouter from "./src/controllers/users.controllers.js"
+import createBookingRouter from "./src/controllers/createBookings.controllers.js"
 
 const app = express();
 app.use(morgan("combined"));
@@ -13,8 +14,9 @@ app.use(cors());
 app.use(express.json());
 app.use("/auth-seller", authSellersRouter)
 app.use("/auth-user", authUsersRouter)
-app.use("/sellers", sellersRouter);
-app.use("/users", usersRouter);
+app.use("/sellers", sellersRouter)
+app.use("/users", usersRouter)
+app.use("/create-bookings", createBookingRouter)
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
