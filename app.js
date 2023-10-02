@@ -8,17 +8,21 @@ import sellersRouter from "./src/controllers/sellers.controllers.js"
 import usersRouter from "./src/controllers/users.controllers.js"
 import createBookingRouter from "./src/controllers/createBookings.controllers.js"
 import stripeRouter from "./src/controllers/stripe.controllers.js";
+import distinctLanguagesRouter from "./src/controllers/distinctLanguages.controllers.js";
+import allSellersRouter from "./src/controllers/allSellers.controllers.js";
 
 const app = express();
 app.use(morgan("combined"));
 app.use(cors());
 app.use(express.json());
-app.use("/auth-seller", authSellersRouter)
-app.use("/auth-user", authUsersRouter)
-app.use("/sellers", sellersRouter)
-app.use("/users", usersRouter)
-app.use("/create-bookings", createBookingRouter)
+app.use("/auth-seller", authSellersRouter);
+app.use("/auth-user", authUsersRouter);
+app.use("/sellers", sellersRouter);
+app.use("/users", usersRouter);
+app.use("/create-bookings", createBookingRouter);
 app.use("/create-checkout-session", stripeRouter);
+app.use("/allSellers", allSellersRouter);
+app.use("/distinct-languages", distinctLanguagesRouter);
 
 
 app.get("/getSeller/:slug", async (req, res) => {
@@ -152,6 +156,23 @@ app.delete("/deleteBooking/:bookingId", authUser, async (req, res) => {
   }
 });
 ﻿
+app.get("/filtered-sellers/:languageData", async (req, res) => {
+  try {
+    const languageData = req.params.languageData; // Get the language data from the query parameter
+
+    const allFilteredSellers = await prisma.seller.findMany({
+      where: {
+        language: languageData, // Filter sellers by language
+      },
+    });
+
+    return res.json({ allFilteredSellers });
+  } catch (error) {
+    console.error("Error fetching filtered sellers:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 export default app;
 // things to note
