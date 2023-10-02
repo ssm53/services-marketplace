@@ -27,5 +27,27 @@ model User {
   name       String?
   email      String  @unique
   password   String?
+  bookings   Booking[]
 }
+
+model Booking {
+  id               Int     @id @default(autoincrement())
+  sellerIdBooking  Int
+  userBooking      User @relation(fields: [userIdBooking], references: [id])
+  userIdBooking    Int
+  sellerName       String?
+  sellerEmail      String
+  sellerRate       Int
+  sellerLanguage   String?
+  sellerExperience String?
+  userName         String?
+  userEmail        String
+  bookingDate      String?
+  bookingTime      String?
+  bookingDuration  Int @default(0)
+  bookingPrice     Int @default(0)
+  bookingRequest   String?
+}
+
+
 
