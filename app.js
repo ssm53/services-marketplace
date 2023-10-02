@@ -78,7 +78,7 @@ app.patch('/update-details/:sellerId', async (req, res) => {
         experience: data.experience,
         pitch: data.pitch,
       },
-    });
+    });//lol
 
     return res.status(200).json({ message: 'Seller details updated successfully', updatedSeller });
   } catch (error) {
